@@ -8,10 +8,11 @@ const express_1 = __importDefault(require("express"));
 const driver_routes_1 = require("./routers/driver.routes");
 const testing_routes_1 = require("./routers/testing.routes");
 const setup_swagger_1 = require("./swagger/setup-swagger");
+const router_pathes_1 = require("./core/router-pathes");
 const setupApp = (app) => {
     app.use(express_1.default.json()); // middleware для парсинга JSON в теле запроса
-    app.use('/api/drivers', driver_routes_1.driverRouter);
-    app.use('/api/testing', testing_routes_1.testingRouter);
+    app.use(router_pathes_1.DRIVERS_PATH, driver_routes_1.driverRouter);
+    app.use(router_pathes_1.TESTING_PATH, testing_routes_1.testingRouter);
     app.get("/", (req, res) => {
         res.status(200).send("Hello my first BACK-END APP!");
     });
