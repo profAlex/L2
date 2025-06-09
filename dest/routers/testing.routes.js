@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.testingRouter = void 0;
 const express_1 = require("express");
-const mock_data_1 = require("../db/mock-data");
+const drivers_repository_1 = require("../repositories/drivers.repository");
+// import {driversDb} from "../db/mock-data";
 exports.testingRouter = (0, express_1.Router)();
 exports.testingRouter.delete('/all-data', (req, res) => {
-    mock_data_1.driversDb.drivers = [];
+    drivers_repository_1.driversRepository.deleteAllDrivers();
     res.sendStatus(204);
 });

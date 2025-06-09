@@ -7,6 +7,7 @@ import { setupApp } from "../src/setup-app";
 import { HttpStatus } from "../src/core/http-statuses";
 import { DriverInputDto } from "../src/drivers/driver.input-dto"
 import {DriverStatus} from "../src/drivers/driver-types";
+import {driversRepository} from "../src/repositories/drivers.repository";
 
 describe("Test API", () => {
 
@@ -80,8 +81,11 @@ describe("Test API", () => {
             .expect(HttpStatus.Created);
 
         const getResponse = await request(app)
+            // .get("/api/drivers/3")
             .get(`/api/drivers/${createResponse.body.id}`)
             .expect(HttpStatus.Ok);
+
+        // const getResponse = await request(app).get("/api/drivers/3");
 
         expect(getResponse.body.name).toBe('Another Driver');
 
