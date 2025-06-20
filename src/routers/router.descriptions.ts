@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
 // import {driversDb} from "../db/mock-data";
-import {ValidationError} from "../core/validation-error";
-import {driverInputDtoValidation} from "../drivers/driver-body-validation";
+import {ValidationErrorType} from "../core/validation-error";
+import {driverInputDtoValidation} from "../validation/driver-dto-validation_middleware";
 import {HttpStatus} from "../core/http-statuses";
-import {Driver, DriverStatus} from "../drivers/driver-types";
+// import {Driver, DriverStatus} from "../drivers/driver-types";
 import {driversRepository} from "../repositories/drivers.repository";
 
 
@@ -23,12 +23,12 @@ export const getDriverById = (req: Request, res: Response) => {
 };
 
 export const createNewDriver = (req: Request, res: Response) => {
-    const errors: ValidationError[] = driverInputDtoValidation(req.body);
+    // const errors: ValidationErrorType[] = driverInputDtoValidation(req.body);
 
-    if(errors.length > 0) {
-        res.status(HttpStatus.BadRequest).send({ errors: errors });
-        return;
-    }
+    // if(errors.length > 0) {
+    //     res.status(HttpStatus.BadRequest).send({ errors: errors });
+    //     return;
+    // }
 
     const newDriver = driversRepository.createDriver(req.body);
 

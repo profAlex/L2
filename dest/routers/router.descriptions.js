@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createNewDriver = exports.getDriverById = exports.getDriversList = void 0;
-const driver_body_validation_1 = require("../drivers/driver-body-validation");
 const http_statuses_1 = require("../core/http-statuses");
+// import {Driver, DriverStatus} from "../drivers/driver-types";
 const drivers_repository_1 = require("../repositories/drivers.repository");
 const getDriversList = (req, res) => {
     res.status(200).json(drivers_repository_1.driversRepository.findALl());
@@ -18,11 +18,11 @@ const getDriverById = (req, res) => {
 };
 exports.getDriverById = getDriverById;
 const createNewDriver = (req, res) => {
-    const errors = (0, driver_body_validation_1.driverInputDtoValidation)(req.body);
-    if (errors.length > 0) {
-        res.status(http_statuses_1.HttpStatus.BadRequest).send({ errors: errors });
-        return;
-    }
+    // const errors: ValidationErrorType[] = driverInputDtoValidation(req.body);
+    // if(errors.length > 0) {
+    //     res.status(HttpStatus.BadRequest).send({ errors: errors });
+    //     return;
+    // }
     const newDriver = drivers_repository_1.driversRepository.createDriver(req.body);
     res.status(201).send(newDriver);
 };

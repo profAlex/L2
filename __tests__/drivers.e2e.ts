@@ -42,6 +42,8 @@ describe("Test API", () => {
            ...testDriverData
        };
 
+       //console.log(newDriver);
+
        const newDriverResponse = await request(app)
            .post("/api/drivers/")
            .send(newDriver)
