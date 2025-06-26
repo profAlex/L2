@@ -32,7 +32,11 @@ describe("Test input data validation", () => {
             email: 'valentin  ple  com',
             vehicleMake: '  '};
 
-        const result = await request(app).post("/api/drivers").send(incorrectTestDriverData);
+        const result = await request(app)
+            .post("/api/drivers")
+            .set('Authorization', 'Basic ' + 'YWRtaW46cXdlcnR5')
+            .send(incorrectTestDriverData);
+
         expect(result.status).toBe(HttpStatus.BadRequest);
         //expect(result.body.errorMessages.length).toBe(4);
 

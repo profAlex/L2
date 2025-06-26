@@ -46,6 +46,7 @@ describe("Test API", () => {
 
        const newDriverResponse = await request(app)
            .post("/api/drivers/")
+           .set('Authorization', 'Basic ' + 'YWRtaW46cXdlcnR5')
            .send(newDriver)
            .expect(HttpStatus.Created);
 
@@ -61,6 +62,7 @@ describe("Test API", () => {
 
         const res = await request(app)
             .post("/api/drivers")
+            .set('Authorization', 'Basic ' + 'YWRtaW46cXdlcnR5')
             .send(newDriver)
             .expect(HttpStatus.Created);
 
@@ -79,6 +81,7 @@ describe("Test API", () => {
     it('GET /drivers/:id - should return driver by id; ', async () => {
         const createResponse = await request(app)
             .post('/api/drivers')
+            .set('Authorization', 'Basic ' + 'YWRtaW46cXdlcnR5')
             .send({ ...testDriverData, name: 'Another Driver' })
             .expect(HttpStatus.Created);
 

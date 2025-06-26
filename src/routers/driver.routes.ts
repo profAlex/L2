@@ -9,10 +9,11 @@ import {createNewDriver, getDriverById, getDriversList} from "./router.descripti
 import {inputIdValidation} from "../validation/input-id-validation_middleware";
 import {inputValidationResultMiddleware} from "../validation/error-management-validation_middleware";
 import {driverInputDtoValidation} from "../validation/driver-dto-validation_middleware";
+import {superAdminGuardMiddleware} from "../validation/base64-auth-guard_middleware";
 
 export const driverRouter = Router();
 
 driverRouter.get("/", getDriversList);
 driverRouter.get("/:id", inputIdValidation, inputValidationResultMiddleware, getDriverById);
-driverRouter.post("/", driverInputDtoValidation, inputValidationResultMiddleware, createNewDriver);
+driverRouter.post("/", superAdminGuardMiddleware, driverInputDtoValidation, inputValidationResultMiddleware, createNewDriver);
 
